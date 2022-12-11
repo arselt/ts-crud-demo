@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker'
 
-import { addProduct, deleteProduct, products } from "./products/product.services";
+import { addProduct, deleteProduct, products, updateProduct, viewProduct } from "./products/product.services";
 
-for (let index = 0; index < 2; index++) {
+for (let index = 0; index < 3; index++) {
   addProduct({
     id: faker.datatype.uuid(),
     title: faker.commerce.productName(),
@@ -28,8 +28,21 @@ for (let index = 0; index < 2; index++) {
 console.log(products);
 
 const getFirstProductId = products[0].id
+const getSecondProductId = products[1].id
+const getThirdProductId = products[2].id
 
 console.log("The id we want to delete: ", getFirstProductId);
+
+console.log("The product ID I want to display: ", getSecondProductId);
+
+console.log("The product I want to display: ");
+viewProduct(getSecondProductId);
+
+console.log("The product ID I want to update: ", getSecondProductId);
+updateProduct(getThirdProductId, {
+  title: faker.commerce.productName(),
+  updatedAt: faker.date.recent()
+});
 
 deleteProduct(getFirstProductId);
 
