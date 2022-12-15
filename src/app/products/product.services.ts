@@ -1,5 +1,5 @@
 import { Product } from "./product.model"; // Import the Product interface
-import { CreateProductDto } from "./product.dto"; // Import the CreateProductDto data transfer object
+import { CreateProductDto, updateProductDto } from "./product.dto"; // Import the CreateProductDto data transfer object
 import { faker } from "@faker-js/faker";
 
 // Create an empty array of products
@@ -38,20 +38,20 @@ export const viewProduct = (id: Id) => {
 }
 
 // 3. Updates the properties of a product with the given ID.
-export const updateProduct = (id: Id, changes: object) => {
+export const updateProduct = (id: Id, changes: updateProductDto) => {
   const index: number = getIndex(id)
-  const product: Product = products[index] // Get the product at the given index by the Id
+  const prevData: Product = products[index] // Get the product at the given index by the Id
 
   // Update the product with the provided changes
   products[index] = {
-    ...product,
+    ...prevData,
     ...changes
   }
   // Return the updated product
   return products[index]
 }
 
-// Deletes a product with the given ID.
+// 4. Deletes a product with the given ID.
 export const deleteProduct = (id: Id) => {
   const index: number = getIndex(id)
   products.splice(index, 1) //split from the index to a count of one (just the index)

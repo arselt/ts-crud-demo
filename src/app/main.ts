@@ -33,6 +33,7 @@ viewProduct(getSecondProductId);
 console.log("The product ID I want to update: ", getThirdProductId);
 updateProduct(getThirdProductId, {
   title: faker.commerce.productName(),
+  price: 90,
 });
 
 deleteProduct(getFirstProductId);
