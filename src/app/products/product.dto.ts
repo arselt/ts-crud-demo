@@ -5,5 +5,8 @@ export interface CreateProductDto extends Omit<Product, 'id' | 'createdAt' | 'up
   categoryId: string;
 }
 
-// Define an interface for updating products without entering all required types
-export interface updateProductDto extends Partial<CreateProductDto> { }
+// Define an interface for updating products without entering all required types but omiting immutable ones
+export interface UpdateProductDto extends Partial<CreateProductDto> { }
+
+// Define an interface for searching products with no possibility of Modifying the data
+export interface FindProductDto extends Readonly<Partial<Product>> { }

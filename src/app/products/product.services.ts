@@ -1,5 +1,5 @@
 import { Product } from "./product.model"; // Import the Product interface
-import { CreateProductDto, updateProductDto } from "./product.dto"; // Import the CreateProductDto data transfer object
+import { CreateProductDto, FindProductDto, UpdateProductDto } from "./product.dto"; // Import the CreateProductDto data transfer object
 import { faker } from "@faker-js/faker";
 
 // Create an empty array of products
@@ -38,7 +38,7 @@ export const viewProduct = (id: Id) => {
 }
 
 // 3. Updates the properties of a product with the given ID.
-export const updateProduct = (id: Id, changes: updateProductDto) => {
+export const updateProduct = (id: Id, changes: UpdateProductDto) => {
   const index: number = getIndex(id)
   const prevData: Product = products[index] // Get the product at the given index by the Id
 
@@ -51,9 +51,14 @@ export const updateProduct = (id: Id, changes: updateProductDto) => {
   return products[index]
 }
 
-// 4. Deletes a product with the given ID.
+// 4. Delete a product with the given ID.
 export const deleteProduct = (id: Id) => {
   const index: number = getIndex(id)
   products.splice(index, 1) //split from the index to a count of one (just the index)
 }
 
+// 5. Show an array of Products by the search with Readonly params
+export const findProducts = (dto: FindProductDto): Product[] => {
+  // Conection to search engine
+  return products;
+}
